@@ -1,10 +1,13 @@
 package ProjetoPrincipal.test;
+import ProjetoPrincipal.dominio.GerenciadorTarefas;
+
 import java.util.Scanner;
 
 
 public class TarefasTest {
     static void main(String[] args) {
      Scanner scanner = new Scanner(System.in);
+     GerenciadorTarefas gerenciartarefas = new GerenciadorTarefas();
 
      while (true) {
 
