@@ -6,23 +6,23 @@ public class ExclusorTarefas {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public void excluir(Tarefa[] tarefas, int total) {
+    public void excluir(GerenciadorTarefas ger) {
 
-        if (total == 0) {
+        if (ger.total == 0) {
             System.out.println("Nenhuma tarefa para excluir.");
             return;
         }
 
-        // Mostrar tarefas
-        for (int i = 0; i < total; i++) {
+        // Listar
+        for (int i = 0; i < ger.total; i++) {
 
-            String status = tarefas[i].isConcluida()
+            String status = ger.tarefas[i].isConcluida()
                     ? "Concluída"
                     : "Pendente";
 
             System.out.println(
                     (i + 1) + " - " +
-                            tarefas[i].getNome() +
+                            ger.tarefas[i].getNome() +
                             " [" + status + "]"
             );
         }
@@ -30,19 +30,19 @@ public class ExclusorTarefas {
         System.out.print("Digite o número da tarefa: ");
         int num = scanner.nextInt();
 
-        if (num < 1 || num > total) {
+        if (num < 1 || num > ger.total) {
             System.out.println("Número inválido!");
             return;
         }
 
-        Tarefa tarefa = tarefas[num - 1];
+        Tarefa tarefa = ger.tarefas[num - 1];
 
         // Confirmação
         if (!tarefa.isConcluida()) {
 
             scanner.nextLine();
 
-            System.out.print("A tarefa não está concluída. Tem certeza? (s/n): ");
+            System.out.print("Tem certeza? (s/n): ");
             String resp = scanner.nextLine();
 
             if (!resp.equalsIgnoreCase("s")) {
@@ -51,13 +51,14 @@ public class ExclusorTarefas {
             }
         }
 
-        // Remover (organizar array)
-        for (int i = num - 1; i < total - 1; i++) {
-            tarefas[i] = tarefas[i + 1];
+        // Remover
+        for (int i = num - 1; i < ger.total - 1; i++) {
+            ger.tarefas[i] = ger.tarefas[i + 1];
         }
 
-        tarefas[total - 1] = null;
+        ger.tarefas[ger.total - 1] = null;
+        ger.total--;
 
-        System.out.println("Tarefa excluída!");
+        System.out.println("Tarefa excluída com sucesso!");
     }
 }
