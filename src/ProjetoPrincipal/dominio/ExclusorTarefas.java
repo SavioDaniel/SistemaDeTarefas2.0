@@ -8,21 +8,23 @@ public class ExclusorTarefas {
 
     public void excluir(GerenciadorTarefas ger) {
 
-        if (ger.total == 0) {
+        if (ger.getTotal() == 0) {
             System.out.println("Nenhuma tarefa para excluir.");
             return;
         }
 
         // Listar
-        for (int i = 0; i < ger.total; i++) {
+        for (int i = 0; i < ger.getTotal(); i++) {
 
-            String status = ger.tarefas[i].isConcluida()
+            Tarefa t = ger.getTarefa(i);
+
+            String status = t.isConcluida()
                     ? "Concluída"
                     : "Pendente";
 
             System.out.println(
                     (i + 1) + " - " +
-                            ger.tarefas[i].getNome() +
+                            t.getNome() +
                             " [" + status + "]"
             );
         }
@@ -30,17 +32,17 @@ public class ExclusorTarefas {
         System.out.print("Digite o número da tarefa: ");
         int num = scanner.nextInt();
 
-        if (num < 1 || num > ger.total) {
+        if (num < 1 || num > ger.getTotal()) {
             System.out.println("Número inválido!");
             return;
         }
 
-        Tarefa tarefa = ger.tarefas[num - 1];
+        Tarefa tarefa = ger.getTarefa(num - 1);
+
+        scanner.nextLine();
 
         // Confirmação
         if (!tarefa.isConcluida()) {
-
-            scanner.nextLine();
 
             System.out.print("Tem certeza? (s/n): ");
             String resp = scanner.nextLine();
@@ -52,12 +54,7 @@ public class ExclusorTarefas {
         }
 
         // Remover
-        for (int i = num - 1; i < ger.total - 1; i++) {
-            ger.tarefas[i] = ger.tarefas[i + 1];
-        }
-
-        ger.tarefas[ger.total - 1] = null;
-        ger.total--;
+        ger.remover(num - 1);
 
         System.out.println("Tarefa excluída com sucesso!");
     }
