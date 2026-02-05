@@ -1,6 +1,8 @@
 package ProjetoPrincipal.test;
 
 import ProjetoPrincipal.dominio.GerenciadorTarefas;
+import ProjetoPrincipal.dominio.ExclusorTarefas;
+
 import java.util.Scanner;
 
 public class TarefasTest {
@@ -8,45 +10,42 @@ public class TarefasTest {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        GerenciadorTarefas gerenciador = new GerenciadorTarefas();
+
+        GerenciadorTarefas ger = new GerenciadorTarefas();
+        ExclusorTarefas exclusor = new ExclusorTarefas();
 
         while (true) {
 
-            System.out.println("\n--------- MENU ---------");
-            System.out.println("1. Criar tarefa");
-            System.out.println("2. Concluir tarefa");
-            System.out.println("3. Excluir tarefa");
-            System.out.println("4. Listar tarefas");
-            System.out.println("5. Sair");
-            System.out.print("Escolha: ");
+            System.out.println("\n------ MENU ------");
+            System.out.println("1 - Criar");
+            System.out.println("2 - Concluir");
+            System.out.println("3 - Excluir");
+            System.out.println("4 - Listar");
+            System.out.println("5 - Sair");
+            System.out.print("Opção: ");
 
-            int opcao = scanner.nextInt();
+            int op = scanner.nextInt();
 
-            switch (opcao) {
+            switch (op) {
 
                 case 1:
-                    gerenciador.criarTarefa();
+                    ger.criarTarefa();
                     break;
 
                 case 2:
-                    gerenciador.concluirTarefa();
+                    ger.concluirTarefa();
                     break;
 
                 case 3:
-                    System.out.print("Digite o número da tarefa: ");
-                    int num = scanner.nextInt();
-
-                    // CORRIGIDO AQUI
-                    gerenciador.remover(num - 1);
-
+                    exclusor.excluir(ger);
                     break;
 
                 case 4:
-                    gerenciador.listarTarefas();
+                    ger.listarTarefas();
                     break;
 
                 case 5:
-                    System.out.println("Saindo...");
+                    System.out.println("Encerrando...");
                     scanner.close();
                     return;
 
