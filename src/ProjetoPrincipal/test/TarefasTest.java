@@ -23,11 +23,11 @@ public class TarefasTest {
          switch (opcao) {
 
              case 1: {
-                 System.out.println("Você escolheu a opção 1: Criar tarefa");
+                 gerenciartarefas.concluirTarefa();
                  break;
              }
              case 2: {
-                 System.out.println("Você escolheu a opção 2. Concluir tarefa");
+                 gerenciartarefas.concluirTarefa();
                  break;
              }
              case 3: {
@@ -35,7 +35,7 @@ public class TarefasTest {
                  break;
              }
              case 4: {
-                 System.out.println("Você escolheu a opção 4. Listar tarefa");
+                 gerenciartarefas.listarTarefas();
                  break;
              }
              case 5: {
@@ -48,6 +48,7 @@ public class TarefasTest {
              }
 
          }
+         System.out.println();
 
      }
     }
