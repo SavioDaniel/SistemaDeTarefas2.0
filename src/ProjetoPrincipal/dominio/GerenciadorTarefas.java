@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class GerenciadorTarefas {
 
-    // AGORA PUBLIC
-    public Tarefa[] tarefas = new Tarefa[100];
-    public int total = 0;
+    private Tarefa[] tarefas = new Tarefa[100];
+    private int total = 0;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -19,7 +18,7 @@ public class GerenciadorTarefas {
         }
 
         System.out.print("Digite o nome da tarefa: ");
-        scanner.nextLine();
+        scanner.nextLine(); // limpar buffer
         String nome = scanner.nextLine();
 
         Tarefa nova = new Tarefa(nome);
@@ -70,5 +69,30 @@ public class GerenciadorTarefas {
         tarefas[num - 1].concluir();
 
         System.out.println("Tarefa concluída!");
+    }
+
+    // ==============================
+    // MÉTODOS PARA OUTRAS CLASSES
+    // ==============================
+
+    // Retorna total de tarefas
+    public int getTotal() {
+        return total;
+    }
+
+    // Retorna uma tarefa pela posição
+    public Tarefa getTarefa(int pos) {
+        return tarefas[pos];
+    }
+
+    // Remove tarefa
+    public void remover(int pos) {
+
+        for (int i = pos; i < total - 1; i++) {
+            tarefas[i] = tarefas[i + 1];
+        }
+
+        tarefas[total - 1] = null;
+        total--;
     }
 }
