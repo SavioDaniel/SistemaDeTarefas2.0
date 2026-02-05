@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 public class GerenciadorTarefas {
 
-    private Tarefa[] tarefas = new Tarefa[100];
-    private int total = 0;
+    // AGORA PUBLIC
+    public Tarefa[] tarefas = new Tarefa[100];
+    public int total = 0;
 
     private Scanner scanner = new Scanner(System.in);
 
-    // CRIAR TAREFA
+    // CRIAR
     public void criarTarefa() {
 
         if (total >= tarefas.length) {
@@ -18,7 +19,7 @@ public class GerenciadorTarefas {
         }
 
         System.out.print("Digite o nome da tarefa: ");
-        scanner.nextLine(); // limpar buffer
+        scanner.nextLine();
         String nome = scanner.nextLine();
 
         Tarefa nova = new Tarefa(nome);
