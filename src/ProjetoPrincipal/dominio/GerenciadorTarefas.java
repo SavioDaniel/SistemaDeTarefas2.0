@@ -9,31 +9,27 @@ public class GerenciadorTarefas {
 
     private Scanner scanner = new Scanner(System.in);
 
-    // CRIAR
     public void criarTarefa() {
 
         if (total >= tarefas.length) {
-            System.out.println("Limite de tarefas atingido!");
+            System.out.println("Limite atingido!");
             return;
         }
 
-        System.out.print("Digite o nome da tarefa: ");
-        scanner.nextLine(); // limpar buffer
+        System.out.print("Nome da tarefa: ");
+        scanner.nextLine();
         String nome = scanner.nextLine();
 
-        Tarefa nova = new Tarefa(nome);
-
-        tarefas[total] = nova;
+        tarefas[total] = new Tarefa(nome);
         total++;
 
-        System.out.println("Tarefa criada com sucesso!");
+        System.out.println("Tarefa criada!");
     }
 
-    // LISTAR
     public void listarTarefas() {
 
         if (total == 0) {
-            System.out.println("Nenhuma tarefa cadastrada.");
+            System.out.println("Nenhuma tarefa.");
             return;
         }
 
@@ -51,41 +47,33 @@ public class GerenciadorTarefas {
         }
     }
 
-    // CONCLUIR
     public void concluirTarefa() {
 
         listarTarefas();
 
         if (total == 0) return;
 
-        System.out.print("Digite o número da tarefa: ");
+        System.out.print("Número: ");
         int num = scanner.nextInt();
 
         if (num < 1 || num > total) {
-            System.out.println("Número inválido!");
+            System.out.println("Inválido!");
             return;
         }
 
         tarefas[num - 1].concluir();
 
-        System.out.println("Tarefa concluída!");
+        System.out.println("Concluída!");
     }
 
-    // ==============================
-    // MÉTODOS PARA OUTRAS CLASSES
-    // ==============================
-
-    // Retorna total de tarefas
     public int getTotal() {
         return total;
     }
 
-    // Retorna uma tarefa pela posição
     public Tarefa getTarefa(int pos) {
         return tarefas[pos];
     }
 
-    // Remove tarefa
     public void remover(int pos) {
 
         for (int i = pos; i < total - 1; i++) {
@@ -94,5 +82,6 @@ public class GerenciadorTarefas {
 
         tarefas[total - 1] = null;
         total--;
+
     }
 }
