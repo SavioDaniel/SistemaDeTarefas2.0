@@ -1,12 +1,24 @@
 package ProjetoPrincipal.dominio;
 
 public class Tarefa {
-    public String nome;
-    public boolean concluido;
 
-    public  Tarefa(String nome){
+    private String nome;
+    private boolean concluida;
+
+    public Tarefa(String nome) {
         this.nome = nome;
-        this.concluido;
+        this.concluida = false;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public boolean isConcluida() {
+        return concluida;
+    }
+
+    public void concluir() {
+        this.concluida = true;
+    }
 }
