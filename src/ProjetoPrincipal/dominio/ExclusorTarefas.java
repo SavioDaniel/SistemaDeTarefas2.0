@@ -13,7 +13,6 @@ public class ExclusorTarefas {
             return;
         }
 
-        // Listar
         for (int i = 0; i < ger.getTotal(); i++) {
 
             Tarefa t = ger.getTarefa(i);
@@ -41,7 +40,6 @@ public class ExclusorTarefas {
 
         scanner.nextLine();
 
-        // Confirmação
         if (!tarefa.isConcluida()) {
 
             System.out.print("Tem certeza? (s/n): ");
@@ -53,7 +51,6 @@ public class ExclusorTarefas {
             }
         }
 
-        // Remover
         ger.remover(num - 1);
 
         System.out.println("Tarefa excluída com sucesso!");
